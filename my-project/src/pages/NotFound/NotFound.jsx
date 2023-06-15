@@ -1,3 +1,4 @@
+import withDashboard from "../../Components/DashBoardLayout/DashBoardLayout";
 
 const NotFound = () => {
     return (
@@ -7,4 +8,4 @@ const NotFound = () => {
     );
 };
 
-export default NotFound;
+export default withDashboard(NotFound);
