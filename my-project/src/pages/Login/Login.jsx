@@ -36,7 +36,13 @@ const Login = () => {
         if (res.data) {
           localStorage.setItem(
             "login",
-            JSON.stringify({ userLogIn: true, token: res.data.access_token })
+            JSON.stringify({
+              userLogIn: true,
+              token: res.data.access_token,
+              name: res.data.data.personalName,
+              email: res.data.data.email,
+              role: res.data.data.role,
+            })
           );
           setCookie("user_login", res.data.data.email, 1);
           navigate("/");

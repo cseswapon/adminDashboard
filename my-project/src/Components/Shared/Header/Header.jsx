@@ -1,3 +1,6 @@
+import { Link } from "react-router-dom";
+import cart from "../../../assets/icons8-cart.gif";
+import logo from '../../../assets/vite.svg';
 const Header = () => {
   const handelLogout = () => {
     let cookies = document.cookie.split(";");
@@ -10,31 +13,27 @@ const Header = () => {
     localStorage.clear();
     window.location.reload();
   };
+  const name = JSON.parse(localStorage.getItem("login")).name;
+  // console.log(name);
   return (
     <>
       <nav className="bg-gray-800 py-4">
         <div className="container mx-auto flex items-center justify-between">
-          <div className="text-white font-semibold">My E-commerce Store</div>
+          <div className="text-white font-semibold ">
+            <Link className="flex items-center" to="/">
+              {" "}
+              <img src={logo} className="me-2" alt="avatar" /> My E-commerce
+              Store
+            </Link>
+          </div>
           <ul className="hidden sm:flex space-x-4">
             <li>
-              <a href="#" className="text-white hover:text-gray-300">
-                Home
-              </a>
+              <p className="text-white ">Welcome To, {name} 🎇</p>
             </li>
             <li>
-              <a href="#" className="text-white hover:text-gray-300">
-                Products
-              </a>
-            </li>
-            <li>
-              <a href="#" className="text-white hover:text-gray-300">
-                Cart
-              </a>
-            </li>
-            <li>
-              <a href="#" className="text-white hover:text-gray-300">
-                Account
-              </a>
+              <Link to="/cart">
+                <img className="w-7 rounded" src={cart} alt="avatar" />
+              </Link>
             </li>
             <li>
               <button

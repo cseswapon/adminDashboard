@@ -23,6 +23,7 @@ const Register = () => {
       .post("user/singup", state)
       .then((res) => {
         if (res.data.data.contactNumber) {
+          alert('Register Successful')
           navigate("/");
         }
       })

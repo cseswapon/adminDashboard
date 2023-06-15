@@ -5,7 +5,14 @@ import PrivateRoute from "../Private/Private";
 import PublicRoute from "../Public/Public";
 import Login from "../../pages/Login/Login";
 import Register from "../../pages/Register/Register";
-
+import AllProduct from "../../pages/AllProduct/AllProduct";
+import Cart from "../../pages/Cart/Cart";
+import SingleProduct from "../../pages/SingleProduct/SingleProduct";
+import AddProduct from "../../pages/AddProduct/AddProduct";
+import AdminRoute from "../AdminRoute/AdminRoute";
+import AddCustomer from "../../pages/AddCustomer/AddCustomer";
+import CustomerList from "../../pages/CustomerList/CustomerList";
+import OrderList from "../../pages/OrderList/OrderList";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -13,6 +20,69 @@ export const router = createBrowserRouter([
       <PrivateRoute>
         <Home />
       </PrivateRoute>
+    ),
+    errorElement: <NotFound />,
+  },
+  {
+    path: "/product",
+    element: (
+      <PrivateRoute>
+        <AllProduct />
+      </PrivateRoute>
+    ),
+    errorElement: <NotFound />,
+  },
+  {
+    path: "/product/:id",
+    element: (
+      <PrivateRoute>
+        <SingleProduct />
+      </PrivateRoute>
+    ),
+    errorElement: <NotFound />,
+  },
+  {
+    path: "/add_customer",
+    element: (
+      <AdminRoute>
+        <AddCustomer />
+      </AdminRoute>
+    ),
+    errorElement: <NotFound />,
+  },
+  {
+    path: "/all_customer",
+    element: (
+      <AdminRoute>
+        <CustomerList />
+      </AdminRoute>
+    ),
+    errorElement: <NotFound />,
+  },
+  {
+    path: "/add_product",
+    element: (
+      <AdminRoute>
+        <AddProduct />
+      </AdminRoute>
+    ),
+    errorElement: <NotFound />,
+  },
+  {
+    path: "/cart",
+    element: (
+      <PrivateRoute>
+        <Cart />
+      </PrivateRoute>
+    ),
+    errorElement: <NotFound />,
+  },
+  {
+    path: "/order_list",
+    element: (
+      <AdminRoute>
+        <OrderList />
+      </AdminRoute>
     ),
     errorElement: <NotFound />,
   },
