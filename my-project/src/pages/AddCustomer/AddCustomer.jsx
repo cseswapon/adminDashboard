@@ -1,8 +1,15 @@
+/**
+ * Title: Online E-commerce Product Sell
+ * Description: Add Customer.
+ * Author: Swapon Saha.
+ * Date: 16/06/2023.
+ */
 import { useReducer } from "react";
 import withDashboard from "../../Components/DashBoardLayout/DashBoardLayout";
 import { instance } from "../../api/axios";
 
 const AddCustomer = () => {
+
   const initialState = {};
   const reducer = (state, action) => {
     switch (action.type) {
@@ -17,25 +24,29 @@ const AddCustomer = () => {
         return state;
     }
   };
+  // react hook useReducer use
   const [state, dispatch] = useReducer(reducer, initialState);
+// submit the from 
   const handelSubmit = (e) => {
     e.preventDefault();
     // console.log(state);
+    // api call
     instance
       .post("user/singup", state)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         if (res.data.data.contactNumber) {
           alert("Register Successful");
           dispatch({ type: "RESET" });
           window.location.reload();
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => alert(err.message));
   };
   return (
     <div className="max-w-lg mx-auto">
       <h1 className="text-3xl text-ellipsis my-4">Add Customer</h1>
+      {/* from section start */}
       <form
         onSubmit={handelSubmit}
         className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
@@ -123,5 +134,5 @@ const AddCustomer = () => {
     </div>
   );
 };
-
+// this is a HoC Component
 export default withDashboard(AddCustomer);

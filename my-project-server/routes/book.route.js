@@ -1,19 +1,10 @@
 const express = require("express");
-const Booked = require("../modules/Booked.module");
+const { getBooked, postBooked } = require("../controller/booked.controller");
 const route = express.Router();
 
 route
   .route("/")
-  .get(async (req, res) => {
-    const result = await Booked.find({});
-    res.send({ result });
-  })
-  .post(async (req, res) => {
-    const body = req.body;
-    const result = await Booked.create(body);
-    res.send({
-      data: result,
-    });
-  });
+  .get(getBooked)
+  .post(postBooked);
 
 module.exports = route;

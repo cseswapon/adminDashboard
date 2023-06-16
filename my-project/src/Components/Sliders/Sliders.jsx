@@ -1,5 +1,10 @@
 
-
+/**
+ * Title: Online E-commerce Product Sell
+ * Description: Slider show.
+ * Author: Swapon Saha.
+ * Date: 16/06/2023.
+ */
 const Sliders = ({ image, caption }) => {
   return (
     <div>

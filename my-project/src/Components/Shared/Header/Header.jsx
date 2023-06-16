@@ -1,8 +1,16 @@
+/**
+ * Title: Online E-commerce Product Sell
+ * Description: Our Application Header Section and add logout mechanism.
+ * Author: Swapon Saha.
+ * Date: 16/06/2023.
+ */
 import { Link } from "react-router-dom";
 import cart from "../../../assets/icons8-cart.gif";
-import logo from '../../../assets/vite.svg';
+import logo from "../../../assets/vite.svg";
 const Header = () => {
+  // this function call all application logout
   const handelLogout = () => {
+    // cookies delete
     let cookies = document.cookie.split(";");
     for (let i = 0; i < cookies.length; i++) {
       let cookie = cookies[i];
@@ -13,12 +21,14 @@ const Header = () => {
     localStorage.clear();
     window.location.reload();
   };
-  const name = JSON.parse(localStorage.getItem("login")).name;
+  // get the name localStorage
+  const name = JSON.parse(localStorage.getItem("login")).name || 'avatar';
   // console.log(name);
   return (
     <>
       <nav className="bg-gray-800 py-4">
         <div className="container mx-auto flex items-center justify-between">
+          {/* logo section */}
           <div className="text-white font-semibold ">
             <Link className="flex items-center" to="/">
               {" "}
@@ -26,6 +36,7 @@ const Header = () => {
               Store
             </Link>
           </div>
+          {/* cart, logout, and show client name */}
           <ul className="hidden sm:flex space-x-4">
             <li>
               <p className="text-white ">Welcome To, {name} 🎇</p>
@@ -36,6 +47,7 @@ const Header = () => {
               </Link>
             </li>
             <li>
+              {/* This is a logout button */}
               <button
                 onClick={() => handelLogout()}
                 className="text-red-600 hover:text-gray-300"
@@ -44,6 +56,7 @@ const Header = () => {
               </button>
             </li>
           </ul>
+          {/* toggle button with a mobile responsive */}
           <div className="sm:hidden">
             <button className="text-white hover:text-gray-300">
               <svg

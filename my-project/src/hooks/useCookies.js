@@ -1,3 +1,9 @@
+/**
+ * Title: Online E-commerce Product Sell
+ * Description: This is a custom hook use to cookies handel.
+ * Author: Swapon Saha.
+ * Date: 16/06/2023.
+ */
 const useCookies = (name) => {
   let nameEQ = name + "=";
   let ca = document.cookie.split(";");

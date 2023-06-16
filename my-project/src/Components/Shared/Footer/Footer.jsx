@@ -1,3 +1,9 @@
+/**
+ * Title: Online E-commerce Product Sell
+ * Description: Our Application Footer Section.
+ * Author: Swapon Saha.
+ * Date: 16/06/2023.
+ */
 import { Link } from "react-router-dom";
 import logo from "../../../assets/vite.svg";
 const Footer = () => {
@@ -5,6 +11,7 @@ const Footer = () => {
     <>
       <footer className="bg-gray-800 text-white py-8">
         <div className="container mx-auto flex flex-col md:flex-row items-start justify-between">
+          {/* logo and name */}
           <div className="flex flex-col mb-6 md:mb-0">
             <span className="font-semibold text-lg">
               <Link to={"/"}>
@@ -13,15 +20,18 @@ const Footer = () => {
               My E-commerce Store
             </span>
             <p className="text-gray-400 text-sm">
+              {/* Client PC date zone */}
               © {[new Date().toDateString().split(" ")[3]]} All rights reserved
             </p>
           </div>
+          {/* categories */}
           <div className="flex flex-col mb-6 md:mb-0">
             <span className="font-semibold mb-2">Categories</span>
             <p className="text-white hover:text-gray-300">
               Our Product all Electronics
             </p>
           </div>
+          {/* some kind of link */}
           <div className="flex flex-col mb-6 md:mb-0">
             <span className="font-semibold mb-2">Information</span>
             <Link to="/" className="text-white hover:text-gray-300">
@@ -34,6 +44,7 @@ const Footer = () => {
               Cart
             </Link>
           </div>
+          {/* social media link */}
           <div className="flex flex-col mb-6 md:mb-0">
             <span className="font-semibold mb-2">Follow Us</span>
             <div className="flex space-x-4">

@@ -1,3 +1,9 @@
+/**
+ * Title: Online E-commerce Product Sell
+ * Description: Only Admin Show.
+ * Author: Swapon Saha.
+ * Date: 16/06/2023.
+ */
 import { useEffect, useState } from "react";
 import withDashboard from "../../Components/DashBoardLayout/DashBoardLayout";
 import { instance } from "../../api/axios";
@@ -5,6 +11,7 @@ import { instance } from "../../api/axios";
 const OrderList = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
+    // booked api call
     instance
       .get("booked")
       .then((res) => setData(res.data.result))
@@ -14,6 +21,7 @@ const OrderList = () => {
     <>
       <div className="container mx-auto px-6 my-6">
         <h1 className="text-3xl text-ellipsis my-4">All Customer List</h1>
+        {/* order list show */}
         <table className="min-w-full divide-y divide-gray-200">
           <thead>
             <tr className="bg-gray-100 text-center">

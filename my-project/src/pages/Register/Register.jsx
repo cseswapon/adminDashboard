@@ -1,8 +1,15 @@
+/**
+ * Title: Online E-commerce Product Sell
+ * Description: Our Application Register System.
+ * Author: Swapon Saha.
+ * Date: 16/06/2023.
+ */
 import { useReducer } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { instance } from "../../api/axios";
 
 const Register = () => {
+  // initialState 
   const initialState = {};
   const reducer = (state, action) => {
     switch (action.type) {
@@ -15,15 +22,19 @@ const Register = () => {
         return state;
     }
   };
+  // use to react hook
   const [state, dispatch] = useReducer(reducer, initialState);
   const navigate = useNavigate();
+  // register submit
   const handelSubmit = (e) => {
     e.preventDefault();
+    // api call
     instance
       .post("user/singup", state)
       .then((res) => {
         if (res.data.data.contactNumber) {
-          alert('Register Successful')
+          alert("Register Successful");
+          // navigator the root route
           navigate("/");
         }
       })
@@ -34,6 +45,7 @@ const Register = () => {
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="bg-white p-8 shadow-md rounded-md w-full sm:w-2/3 md:w-1/2 lg:w-1/3 xl:w-1/4">
         <h2 className="text-2xl font-bold mb-4">Register</h2>
+        {/* register section */}
         <form onSubmit={handelSubmit}>
           <div className="mb-4">
             <label htmlFor="name" className="block mb-2 text-gray-800">

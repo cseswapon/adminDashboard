@@ -1,3 +1,9 @@
+/**
+ * Title: Online E-commerce Product Sell
+ * Description: Only Admin show all Customer list and Customer Delete.
+ * Author: Swapon Saha.
+ * Date: 16/06/2023.
+ */
 import withDashboard from "../../Components/DashBoardLayout/DashBoardLayout";
 import { instance } from "../../api/axios";
 import { useEffect, useState } from "react";
@@ -5,15 +11,17 @@ import { useEffect, useState } from "react";
 const CustomerList = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
+    // all user call
     instance
       .get("user/users")
       .then((res) => setData(res.data.data))
       .catch((err) => console.log(err));
   }, []);
-
+  // delete user
   const deleteUserId = (id) => {
     const confirm = window.confirm("Are You Sure");
     if (confirm) {
+      // delete user api call
       instance.delete(`user/users/${id}`).then((res) => {
         if (res.data.message) {
           const newData = data.filter((user) => user._id !== id);
@@ -26,6 +34,7 @@ const CustomerList = () => {
   return (
     <div className="container mx-auto px-6 my-6">
       <h1 className="text-3xl text-ellipsis my-4">All Customer List</h1>
+      {/* show all customer our list */}
       <table className="min-w-full divide-y divide-gray-200">
         <thead>
           <tr className="bg-gray-100 text-center">
@@ -45,11 +54,16 @@ const CustomerList = () => {
               <td className="py-2 px-4">{item.email}</td>
               <td className="py-2 px-4">{item.contactNumber}</td>
               <td className="py-2 px-4">
-                <span className={"bg-green-500 text-white px-2 py-1 rounded"}>
+                <span
+                  className={`${
+                    item.role !== "admin" ? "bg-green-500" : "bg-purple-500"
+                  } text-white px-2 py-1 rounded`}
+                >
                   {item.role}
                 </span>
               </td>
               <td className="py-2 px-4">
+                {/* delete this user of our application */}
                 <button
                   onClick={() => deleteUserId(item._id)}
                   disabled={item.role === "admin" && true}

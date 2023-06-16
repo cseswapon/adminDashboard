@@ -1,3 +1,9 @@
+/**
+ * Title: Online E-commerce Product Sell
+ * Description: All Route Control. private route, public route , admin route all handel this file.
+ * Author: Swapon Saha.
+ * Date: 16/06/2023.
+ */
 import { createBrowserRouter } from "react-router-dom";
 import Home from "../../pages/Home/Home";
 import NotFound from "../../pages/NotFound/NotFound";

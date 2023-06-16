@@ -1,3 +1,9 @@
+/**
+ * Title: Online E-commerce Product Sell
+ * Description: Home Page.slider, short product show.
+ * Author: Swapon Saha.
+ * Date: 16/06/2023.
+ */
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -8,6 +14,7 @@ import { Link } from "react-router-dom";
 import banner from "../../assets/banner.png";
 import Product from "../../Components/Product/Product";
 const Home = () => {
+  // slider added with heard coded array use
   const slides = [
     {
       image:
@@ -40,7 +47,7 @@ const Home = () => {
       caption: "Slide 3",
     },
   ];
-
+  // slider section setting
   const settings = {
     dots: true,
     infinite: true,
@@ -59,7 +66,9 @@ const Home = () => {
       },
     ],
   };
+  // check admin login or user login and handel other link
   const admin = JSON.parse(localStorage.getItem("login"))?.role === "admin";
+
   return (
     <>
       <div className="container mx-auto relative">

@@ -1,3 +1,9 @@
+/**
+ * Title: Online E-commerce Product Sell
+ * Description: Login Page.
+ * Author: Swapon Saha.
+ * Date: 16/06/2023.
+ */
 import { Link, useNavigate } from "react-router-dom";
 import { instance } from "../../api/axios";
 import { useReducer } from "react";
@@ -15,11 +21,14 @@ const Login = () => {
         return state;
     }
   };
+  // use to react hook
   const [state, dispatch] = useReducer(reducer, initialState);
+
   const navigate = useNavigate();
+  // login user submit
   const handelSubmit = (e) => {
     e.preventDefault();
-
+    // cookies set function
     function setCookie(name, value, days) {
       let expires = "";
       if (days) {
@@ -29,7 +38,7 @@ const Login = () => {
       }
       document.cookie = name + "=" + (value || "") + expires + "; path=/";
     }
-
+    // login api calling
     instance
       .post("user/login", state)
       .then((res) => {
@@ -46,15 +55,18 @@ const Login = () => {
           );
           setCookie("user_login", res.data.data.email, 1);
           navigate("/");
+        } else {
+          alert('Something Went Wrong')
         }
       })
-      .catch((err) => err);
+      .catch((err) => alert(err.message));
   };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="bg-white p-8 shadow-md rounded-md w-full sm:w-2/3 md:w-1/2 lg:w-1/3 xl:w-1/4">
         <h2 className="text-2xl font-bold mb-4">Login</h2>
+        {/* login from */}
         <form onSubmit={handelSubmit}>
           <div className="mb-4">
             <label htmlFor="number" className="block mb-2 text-gray-800">

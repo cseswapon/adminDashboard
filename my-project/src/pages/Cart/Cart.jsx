@@ -1,3 +1,9 @@
+/**
+ * Title: Online E-commerce Product Sell
+ * Description: Cart Route All Product Show.
+ * Author: Swapon Saha.
+ * Date: 16/06/2023.
+ */
 import { useEffect, useState } from "react";
 import withDashboard from "../../Components/DashBoardLayout/DashBoardLayout";
 import { instance } from "../../api/axios";
@@ -5,12 +11,14 @@ import { instance } from "../../api/axios";
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
   const email = JSON.parse(localStorage.getItem("login")).email;
+  // existing cart show
   useEffect(() => {
     const parsedItems = JSON.parse(localStorage.getItem("cartItems")) || [];
     setCartItems(parsedItems);
   }, []);
-
+  // added cart
   const buyFromCart = (id, name, quantity, price) => {
+    // create a new object
     const newObj = {
       id,
       name,
@@ -18,7 +26,7 @@ const Cart = () => {
       quantity,
       price,
     };
-
+    // booked api calling
     instance
       .post("booked", newObj)
       .then((res) => {
@@ -31,7 +39,7 @@ const Cart = () => {
       })
       .catch((err) => console.log(err.message));
   };
-
+  // remove to cart
   const removeFromCart = (id) => {
     const confirm = window.confirm("Are you sure you want to do this?");
     if (confirm) {
@@ -43,6 +51,7 @@ const Cart = () => {
   return (
     <div className="container mx-auto">
       <h1 className="text-2xl font-bold my-4 text-center">My Cart</h1>
+      {/* all cart show start */}
       <div className="flex flex-wrap">
         {cartItems.map((p, i) => (
           <div
@@ -62,13 +71,14 @@ const Cart = () => {
                 </p>
                 <p className="text-gray-600 mb-4">Brand: {p.brand}</p>
                 <p className="text-gray-600 mb-4">Quantity: {p.quantity}</p>
-
+                {/* remove cart or product */}
                 <button
                   onClick={() => removeFromCart(p.id)}
                   className="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 me-6 rounded"
                 >
                   Remove
                 </button>
+                {/* booked cart or product */}
                 <button
                   onClick={() => buyFromCart(p.id, p.name, p.quantity, p.price)}
                   className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded"

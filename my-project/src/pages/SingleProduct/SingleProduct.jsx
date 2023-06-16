@@ -1,3 +1,9 @@
+/**
+ * Title: Online E-commerce Product Sell
+ * Description: Single Product.
+ * Author: Swapon Saha.
+ * Date: 16/06/2023.
+ */
 import { useParams } from "react-router-dom";
 import withDashboard from "../../Components/DashBoardLayout/DashBoardLayout";
 import { useEffect, useState } from "react";
@@ -9,14 +15,16 @@ const SingleProduct = () => {
   const [single, setSingle] = useState({});
 
   useEffect(() => {
+    // single product api call
     instance
       .get(`product/${id}`)
       .then((res) => setSingle(res.data.data))
-      .catch((err) => console.log(err.message));
+      .catch((err) => alert(err.message));
   }, [id]);
 
-  console.log(single);
+  // console.log(single);
 
+  // addToCart function added
   const addToCart = (id, name, brand, image, price) => {
     const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
     const existingItem = cartItems.find((item) => item.id === id);
